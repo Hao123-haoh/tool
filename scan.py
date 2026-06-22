@@ -11,6 +11,7 @@ import webbrowser
 import subprocess
 import threading
 import urllib3
+import shutil
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
 
@@ -26,7 +27,9 @@ YOUTUBE_LINK = "https://youtube.com/@plahuydzvcl?si=jRbdttiCwf_ZbwTf"
 TELEGRAM_LINK = "https://t.me/hqhteam"
 
 TIMEOUT = 10
-OUTPUT_FILE = '/sdcard/scanvia_huypc.txt'
+
+# Đổi sang lưu tại thư mục output trong thư mục dự án hiện tại thay vì /sdcard
+OUTPUT_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'output', 'scanvia_huypc.txt')
 PROXY_LIST = None
 
 WEAK_PASSWORDS = [
@@ -264,7 +267,7 @@ def banner():
     os.system('clear' if 'win' not in sys.platform else 'cls')
     print(f"""{GREEN}
     ╔════════════════════════════════════════╗
-    ║   🐍  HUYPC0X - SCAN VIA FB NEW   ║
+    ║   🐍   HUYPC0X - SCAN VIA FB NEW      ║
     ║   {YELLOW}tele: @eneyota - By XORTEAM{RESET}{GREEN}             ║
     ╚════════════════════════════════════════╝
     {RESET}""")
@@ -316,7 +319,6 @@ def main_menu():
         main_menu()
 
 if __name__ == '__main__':
-    import shutil
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
     
     output_dir = os.path.dirname(OUTPUT_FILE)
